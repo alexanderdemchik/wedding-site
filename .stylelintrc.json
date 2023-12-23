@@ -1,0 +1,1 @@
+{ "extends": ["stylelint-config-standard", "stylelint-config-css-modules"], "rules": { "color-function-notation": ["legacy"], "selector-class-pattern": null } }

@@ -1,0 +1,12 @@
+:root {
+    --primary-color: #5fb7fe;
+    --text-primary-color: #5d5d5d;
+    --text-secondary-color: #8f8f8f;
+    --divider-color: #d1d1d1;
+
+    color: var(--text-primary-color)
+}
+
+body {
+    margin: 0;
+}

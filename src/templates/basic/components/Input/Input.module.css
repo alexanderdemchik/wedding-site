@@ -1,0 +1,39 @@
+.wrapper {
+    display: flex;
+    position: relative;
+    margin-top: 15px;
+}
+
+.wrapper label {
+    position: absolute;
+    font-size: var(--input-label-font-size);
+    top: -16px;
+    font-family: var(--main-font-family)
+}
+
+.wrapper:global(.Mui-focused) label {
+    color: var(--primary-color);
+}
+
+.wrapper .input {
+    display: flex;
+    flex-grow: 1;
+}
+
+.wrapper input {
+    flex-grow: 1;
+    width: 100%;
+    font-family: var(--main-font-family);
+    border: 1px solid var(--divider-color);
+    border-radius: 4px;
+    padding: 10px;
+    font-size: 0.8rem;
+    outline: none;
+    color: var(--text-primary-color);
+    transition: border-color 200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms,transform 200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms,max-width 200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;
+}
+
+.wrapper:global(.Mui-focused) input {
+    border-color: var(--primary-color);
+    outline: none;
+}

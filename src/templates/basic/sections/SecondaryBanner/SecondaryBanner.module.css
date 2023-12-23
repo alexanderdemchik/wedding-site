@@ -1,0 +1,98 @@
+.container {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 300px;
+    padding: 50px 20px;
+    font-family: var(--decorative-font-family);
+}
+
+.avatar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.avatar > span {
+    font-size: 20px;
+    font-family: var(--main-font-family);
+    font-style: italic;
+    margin-top: 35px;
+}
+
+.groom-img, .bride-img  {
+    height: 180px;
+    width: 180px;
+    border-radius: 100%;
+    border: 2px var(--primary-color);
+    border-top: 7px var(--primary-color);
+    border-style: solid;
+}
+
+.groom-img {
+    border-left: 7px var(--primary-color) solid;
+}
+
+.bride-img {
+    border-right: 7px var(--primary-color) solid;
+}
+
+.bribe-and-groom-avatars {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.and {
+    font-size: 8rem;
+    color: var(--primary-color);
+}
+
+.wedding-date {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    font-family: var(--main-font-family);
+    font-weight: 700;
+    font-size: 3rem;
+    margin-top: 50px;
+    color: var(--primary-color);
+}
+
+.wedding-date img {
+    margin-top: 20px;
+}
+
+.wedding-date span:last-of-type {
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--text-primary-color);
+}
+
+.avatar-icon {
+    width: 100px;
+    position: absolute;
+    bottom: -25px;
+    left: 0; 
+    right: 0; 
+    margin-left: auto; 
+    margin-right: auto; 
+}
+
+.avatar-img-container {
+    position: relative;
+}
+
+@media (--sm) {
+    .bribe-and-groom-avatars {
+        flex-flow: row;
+        gap: 100px;
+    }
+
+    .groom-img, .bride-img {
+        height: 220px;
+        width: 220px;
+    }
+}

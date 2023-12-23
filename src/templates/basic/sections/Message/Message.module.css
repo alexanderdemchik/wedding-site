@@ -1,0 +1,16 @@
+.container {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 20px;
+    line-height: 1.6;
+    font-size: 1.1rem;
+    font-weight: 400;
+}
+
+.container img {
+    margin-top: 20px;
+    height: 25px;
+}

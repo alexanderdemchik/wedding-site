@@ -1,0 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Marck+Script&family=Merriweather:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap');
+
+:root {
+    --main-font-family: 'Merriweather', sans-serif;
+    --decorative-font-family: 'Marck Script', sans-serif;
+    --input-label-font-size: 0.75rem;
+
+    font-family: var(--main-font-family);
+    font-size: 16px;
+}

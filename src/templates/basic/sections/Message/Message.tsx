@@ -7,7 +7,7 @@ export const Message = () => {
       {config.message.map((m) => (
         <span>{m}</span>
       ))}
-      <img src="/public/basic/divider.png" />
+      <img src={config.dividerImageLink} height={30} />
     </section>
   );
 };

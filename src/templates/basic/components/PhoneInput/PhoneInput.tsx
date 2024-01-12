@@ -21,6 +21,7 @@ export const PhoneInput = ({
         {...props}
         name={name}
         value={field.value}
+        placeholder="+375 (00) 000 00 00"
         onChange={(phone) => field.onChange(phone)}
       />
     </FormControl>

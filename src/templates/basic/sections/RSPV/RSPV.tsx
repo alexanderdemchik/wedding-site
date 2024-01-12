@@ -2,12 +2,13 @@ import { css, keyframes } from '@emotion/react';
 import styles from './RSPV.module.css';
 import { config } from '../../config';
 import { FormProvider, useForm } from 'react-hook-form';
-import { Input } from '../../components/Input/Input';
+import { FormInput } from '../../components/Input/Input';
 import { PhoneInput } from '../../components/PhoneInput/PhoneInput';
-import { Option, Select } from '../../components/Select/Select';
+import { FormSelect, Option } from '../../components/Select/Select';
+import { FormDrinkSelector } from '../../components/DrinkSelector/DrinkSelector';
 
 export const Form = () => {
-  const methods = useForm({ defaultValues: { name: '', phone: '' } });
+  const methods = useForm({ defaultValues: { name: '', phone: '', select: 'Приду', drinks: [] } });
 
   return (
     <section className={styles.container}>
@@ -25,11 +26,15 @@ export const Form = () => {
         <h3>Подтвердите свое присутствие</h3>
         <div className={styles.form}>
           <FormProvider {...methods}>
-            <Input {...methods.register('name')} label="Ваше имя" />
+            <FormInput name="name" label="Ваше имя" placeholder="Иван Иванов" />
             <PhoneInput name="phone" label="Телефон" />
-            <Select value={'sssss'}>
-              <Option value={'sssss'}>ssss</Option>
-            </Select>
+            <FormSelect name="select" defaultValue={'sssss'} label="Подтверждение присутствия">
+              <Option value={'Приду'}>Приду</Option>
+              <Option value={'Приду не один(не одна)'}>Приду не один(не одна)</Option>
+              <Option value={'К сожалению не смогу'}>К сожалению не смогу</Option>
+            </FormSelect>
+            <FormDrinkSelector label="Что предпочитаете пить?" name="drinks" />
+            <button className={styles.button}>Подтвердить</button>
           </FormProvider>
         </div>
       </div>

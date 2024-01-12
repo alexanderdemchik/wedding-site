@@ -32,6 +32,7 @@
 }
 
 .form-wrapper {
+    margin: 50px 20px;
     font-family: var(--main-font-family);
     z-index: 3;
     max-width: 520px;
@@ -54,4 +55,26 @@
     display: flex;
     flex-flow: column;
     gap: 20px;
+}
+
+.button {
+    height: 50px;
+    border-radius: 30px;
+    align-self: center;
+    border: none;
+    background: var(--primary-color);
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 0 20px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.button:hover {
+    transform: scale(1.05);
+}
+
+.button:active {
+    transform: scale(1);
 }

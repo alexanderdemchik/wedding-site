@@ -6,7 +6,7 @@
     padding: 10px 10px 100px;
 }
 
-.container > h2 {
+.container  h2 {
     font-size: 3rem;
     color: var(--primary-color);
 }

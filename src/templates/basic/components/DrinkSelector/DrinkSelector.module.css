@@ -1,0 +1,54 @@
+.container {
+    position: relative;
+    margin-top: 22px;
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.item {
+    position: relative;
+    display: flex;
+    flex-flow: column;
+}
+
+.label {
+    position: absolute;
+    font-size: var(--input-label-font-size);
+    top: -22px;
+    font-family: var(--main-font-family);
+    line-height: var(--input-label-font-size);
+}
+
+.item img {
+    width: 100%;
+    cursor: pointer;
+    box-shadow: 0 0 8px 0 rgba(34, 60, 80, 20%);
+}
+
+.item span {
+    font-size: 0.8rem;
+    margin-top: 4px;
+    text-align: left;
+    align-self: flex-start;
+}
+
+.check {
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform: translate(-20%, -20%) scale(0);
+    opacity: 0;
+    transition: all 200ms;
+}
+
+.selected {
+    opacity: 1;
+    transform: translate(-20%, -20%) scale(1);
+}
+
+.check svg {
+    width: 30px;
+    height: 30px;
+    fill: var(--primary-color);
+}

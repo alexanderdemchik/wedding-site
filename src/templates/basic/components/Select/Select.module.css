@@ -1,3 +1,76 @@
 .container {
-    
+    display: flex;
+    position: relative;
+    margin-top: 16px;
+}
+
+.container label {
+    overflow: visible;
+    position: absolute;
+    font-size: var(--input-label-font-size);
+    line-height: var(--input-label-font-size);
+    top: -16px;
+    font-family: var(--main-font-family);
+    color: var(--text-primary-color);
+}
+
+.container:global(.Mui-focused) button {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+.container:global(.Mui-focused) label {
+    color: var(--primary-color);
+}
+
+.button {
+    border: 1px solid var(--divider-color);
+    background: none;
+    min-height: 42px;
+    text-align: start;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 1rem;
+    color: var(--text-primary-color);
+    font-family: var(--main-font-family);
+    cursor: pointer;
+    display: flex;
+    flex-grow: 1;
+    position: relative;
+}
+
+.button svg {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    padding-top: 3px;
+    transform: translate(0, -50%);
+}
+
+.listbox {
+    box-shadow: 2px 2px 16px rgba(0, 0, 0, 25%);
+    margin: 3px 0;
+    min-width: 200px;
+    background: #fff;
+    padding: 0;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.listbox li {
+    list-style: none;
+    cursor: pointer;
+    padding: 5px 10px;
+}
+
+.listbox li:hover {
+    background: var(--grey-200);
+}
+
+.listbox :global(.Mui-selected) {
+    background: var(--grey-200);
+}
+
+.popper {
+    z-index: 300;
 }

@@ -1,14 +1,15 @@
 .wrapper {
     display: flex;
     position: relative;
-    margin-top: 15px;
+    margin-top: 16px;
 }
 
 .wrapper label {
     position: absolute;
     font-size: var(--input-label-font-size);
     top: -16px;
-    font-family: var(--main-font-family)
+    font-family: var(--main-font-family);
+    line-height: var(--input-label-font-size);
 }
 
 .wrapper:global(.Mui-focused) label {
@@ -27,7 +28,7 @@
     border: 1px solid var(--divider-color);
     border-radius: 4px;
     padding: 10px;
-    font-size: 0.8rem;
+    font-size: 1rem;
     outline: none;
     color: var(--text-primary-color);
     transition: border-color 200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms,transform 200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms,max-width 200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;

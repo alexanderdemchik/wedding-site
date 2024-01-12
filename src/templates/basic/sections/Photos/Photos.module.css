@@ -1,0 +1,11 @@
+.container {
+    display: flex;
+    flex-flow: column;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.container h3 {
+    font-size: 3rem;
+    color: var(--primary-color);
+}

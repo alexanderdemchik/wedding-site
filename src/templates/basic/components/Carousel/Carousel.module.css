@@ -1,0 +1,143 @@
+.container {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.container ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.slide-list {
+    position: relative;
+    max-height: 400px;
+    width: 10000px;
+    display: flex;
+    flex-direction: row;
+    touch-action: none;
+    user-select: none;
+}
+
+.slide {
+    max-height: 100%;
+}
+
+.slide img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+    user-select: none;
+}
+
+.image-wrapper {
+    height: 100%;
+}
+
+
+.image-wrapper img {
+    opacity: 0.5;
+    transition: opacity 0.4s ease-in-out;
+}
+
+
+.image-wrapper img.active {
+    opacity: 1;
+}
+
+.slide-window {
+    max-width: 100%;
+    overflow: visible;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    background-color: var(--text-secondary-color);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.4s ease-in-out;
+}
+
+.dot.active {
+    background-color: var(--primary-color);
+}
+
+.dots {
+    display: flex;
+    flex-flow: row;
+    gap: 6px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.arrows {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.arrow-left-container {
+    cursor: pointer;
+    position: absolute;
+    left: 0;
+    z-index: 1;
+}
+
+.arrow-right-container {
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    z-index: 1;
+}
+
+.arrow-left {
+    display: flex;
+    position: absolute;
+    right: -50px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--primary-color);
+    border-radius: 50%;
+    padding: 10px;
+    color: #fff;
+}
+
+.arrow-right {
+    display: flex;
+    position: absolute;
+    left: -50px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--primary-color);
+    border-radius: 50%;
+    padding: 10px;
+    color: #fff;
+}
+
+@media (--sm) {
+    .slide-window {
+        max-width: 60%;
+        overflow: visible;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .arrows {
+        display: flex;
+    }
+
+    .arrow-left {
+        right: 20px;
+    }
+
+    .arrow-right {
+        left: 20px;
+    }
+}

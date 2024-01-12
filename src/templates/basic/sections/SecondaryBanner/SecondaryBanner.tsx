@@ -8,7 +8,7 @@ export const SecondaryBanner = () => {
         <div className={styles.avatar}>
           <div className={styles['avatar-img-container']}>
             <img src={config.groomAvatarLink} className={styles['groom-img']} />
-            <img src="/public/basic/butterfly_.png" className={styles['avatar-icon']} />
+            <img src={config.butterflyImageLink} className={styles['avatar-icon']} />
           </div>
           <span>{config.groomName}</span>
         </div>
@@ -16,7 +16,7 @@ export const SecondaryBanner = () => {
         <div className={styles.avatar}>
           <div className={styles['avatar-img-container']}>
             <img src={config.brideAvatarLink} className={styles['bride-img']} />
-            <img src="/public/basic/bucket_.png" className={styles['avatar-icon']} />
+            <img src={config.bucketImageLink} className={styles['avatar-icon']} />
           </div>
           <span>{config.brideName}</span>
         </div>
@@ -28,7 +28,7 @@ export const SecondaryBanner = () => {
           {config.targetDate.toLocaleDateString('ru', { year: 'numeric', month: 'long', day: 'numeric' })} -{' '}
           {config.place}
         </span>
-        <img src="/public/basic/divider__.png" height={30} />
+        <img src={config.dividerImageLink} height={30} />
       </div>
     </section>
   );

@@ -31,6 +31,14 @@
     }
 }
 
+.confirmed-message-wrapper {
+    width: 100%;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+}
+
 .form-wrapper {
     margin: 50px 20px;
     font-family: var(--main-font-family);
@@ -41,6 +49,7 @@
     background: #fff;
     border-radius: 8px;
     padding: 40px 25px;
+    width: 100%;
 }
 
 .form-wrapper h3 {
@@ -51,10 +60,17 @@
     margin-bottom: 40px;
 }
 
-.form {
+.form-wrapper h2 {
+    font-size: 1.8rem;
+    font-weight: 900;
+    margin: 0;
+    color: var(--primary-color);
+}
+
+.form form {
+    gap: 20px;
     display: flex;
     flex-flow: column;
-    gap: 20px;
 }
 
 .button {

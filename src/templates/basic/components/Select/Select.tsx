@@ -9,9 +9,9 @@ import {
   useFormControlContext,
 } from '@mui/base';
 import styles from './Select.module.css';
-import { InputLabel } from '@mui/material';
 import { useController } from 'react-hook-form';
 import { FaAngleDown } from 'react-icons/fa6';
+import { InputLabel } from '../Input/Input';
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 const SelectButton = React.forwardRef(function Button<TValue extends {}, Multiple extends boolean>(
@@ -88,7 +88,7 @@ export const Select = React.forwardRef(
 
     return (
       <FormControl className={styles.container}>
-        <InputLabel htmlFor={props.name}>{label}</InputLabel>
+        <InputLabel htmlFor={props.name!}>{label}</InputLabel>
         <CustomSelect
           {...props}
           ref={(node) => {

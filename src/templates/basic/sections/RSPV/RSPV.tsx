@@ -11,6 +11,10 @@ import { FormsService } from '../../../../../@generated/api/services/FormsServic
 import { FormDto } from '../../../../../@generated/api/models/FormDto';
 import { useLocalStorage } from 'usehooks-ts';
 import { useState } from 'react';
+import clsx from 'clsx';
+import { FaRegCircleCheck, FaRegFaceFrownOpen } from 'react-icons/fa6';
+import { Icon } from '../../components/Icon';
+import { queryClient } from '../../../../main';
 
 export const Form = () => {
   const [isFormEdit, setIsFormEdit] = useState(false);
@@ -21,11 +25,14 @@ export const Form = () => {
       return isUpdate ? FormsService.formsControllerUpdate(body.id!, body) : FormsService.formsControllerCreate(body);
     },
     onSuccess: (data) => {
+      setIsFormEdit(false);
       setSubmittedFormId(data.id);
+      queryClient.setQueryData('form', () => data);
     },
   });
 
   const submittedFormQuery = useQuery({
+    queryKey: 'form',
     queryFn: () => FormsService.formsControllerFindOne(submittedFormId!),
     enabled: !!submittedFormId,
     retry(failureCount) {
@@ -61,70 +68,82 @@ export const Form = () => {
       </div>
 
       <div className={styles.filter} />
-      <div className={styles['form-wrapper']}>
-        {submittedFormId && !isFormEdit ? (
-          <div className={styles['confirmed-message-wrapper']}>
-            <h2>Вы подтвердили свое присутствие</h2>
-            <p
-              onClick={() => {
-                setIsFormEdit(true);
-                methods.reset({
-                  name: submittedFormQuery.data?.name || '',
-                  phone: submittedFormQuery.data?.phone || '',
-                  select: submittedFormQuery.data?.confirmation || 'Приду',
-                  drinks: submittedFormQuery.data?.drinkPreferences || ([] as string[]),
-                });
-              }}
+      <div className={styles['content']}>
+        <div
+          className={clsx(styles['confirmed-message-wrapper'], {
+            [styles['hidden']]: !(submittedFormId && !isFormEdit),
+          })}
+        >
+          <Icon className={styles['check-icon']}>
+            {submittedFormQuery.data?.confirmation !== 'К сожалению не смогу' ? (
+              <FaRegCircleCheck />
+            ) : (
+              <FaRegFaceFrownOpen />
+            )}
+          </Icon>
+          <h3>
+            {submittedFormQuery.data?.confirmation !== 'К сожалению не смогу'
+              ? 'Вы подтвердили свое присутствие'
+              : 'Нам жаль что вы не сможете прийти'}
+          </h3>
+          <p
+            onClick={() => {
+              setIsFormEdit(true);
+              methods.reset({
+                name: submittedFormQuery.data?.name || '',
+                phone: submittedFormQuery.data?.phone || '',
+                select: submittedFormQuery.data?.confirmation || 'Приду',
+                drinks: submittedFormQuery.data?.drinkPreferences || ([] as string[]),
+              });
+            }}
+          >
+            Хотите изменить данные?
+          </p>
+        </div>
+        <div className={clsx(styles['form-wrapper'], { [styles['hidden']]: submittedFormId && !isFormEdit })}>
+          <h3>Подтвердите свое присутствие</h3>
+          <div className={styles.form}>
+            <form
+              onSubmit={methods.handleSubmit((data) => {
+                if (submittedFormId) {
+                  return formSubmitMutation.mutate({
+                    body: {
+                      id: submittedFormId,
+                      name: data.name,
+                      drinkPreferences: data.drinks,
+                      confirmation: data.select,
+                      phone: data.phone,
+                    },
+                    isUpdate: true,
+                  });
+                } else {
+                  return formSubmitMutation.mutate({
+                    body: {
+                      name: data.name,
+                      drinkPreferences: data.drinks,
+                      confirmation: data.select,
+                      phone: data.phone,
+                    },
+                  });
+                }
+              })}
             >
-              Изменить данные
-            </p>
+              <FormProvider {...methods}>
+                <FormInput name="name" label="Ваше имя" placeholder="Иван Иванов" required />
+                <PhoneInput name="phone" label="Телефон" />
+                <FormSelect name="select" defaultValue={'sssss'} label="Подтверждение присутствия">
+                  <Option value={'Приду'}>Приду</Option>
+                  <Option value={'Приду не один(не одна)'}>Приду не один(не одна)</Option>
+                  <Option value={'К сожалению не смогу'}>К сожалению не смогу</Option>
+                </FormSelect>
+                <FormDrinkSelector label="Что предпочитаете пить?" name="drinks" />
+                <button type="submit" className={styles.button} disabled={formSubmitMutation.isLoading}>
+                  Подтвердить
+                </button>
+              </FormProvider>
+            </form>
           </div>
-        ) : (
-          <>
-            <h3>Подтвердите свое присутствие</h3>
-            <div className={styles.form}>
-              <form
-                onSubmit={methods.handleSubmit((data) => {
-                  if (submittedFormId) {
-                    return formSubmitMutation.mutate({
-                      body: {
-                        id: submittedFormId,
-                        name: data.name,
-                        drinkPreferences: data.drinks,
-                        confirmation: data.select,
-                        phone: data.phone,
-                      },
-                      isUpdate: true,
-                    });
-                  } else {
-                    return formSubmitMutation.mutate({
-                      body: {
-                        name: data.name,
-                        drinkPreferences: data.drinks,
-                        confirmation: data.select,
-                        phone: data.phone,
-                      },
-                    });
-                  }
-                })}
-              >
-                <FormProvider {...methods}>
-                  <FormInput name="name" label="Ваше имя" placeholder="Иван Иванов" required />
-                  <PhoneInput name="phone" label="Телефон" />
-                  <FormSelect name="select" defaultValue={'sssss'} label="Подтверждение присутствия">
-                    <Option value={'Приду'}>Приду</Option>
-                    <Option value={'Приду не один(не одна)'}>Приду не один(не одна)</Option>
-                    <Option value={'К сожалению не смогу'}>К сожалению не смогу</Option>
-                  </FormSelect>
-                  <FormDrinkSelector label="Что предпочитаете пить?" name="drinks" />
-                  <button type="submit" className={styles.button} disabled={formSubmitMutation.isLoading}>
-                    Подтвердить
-                  </button>
-                </FormProvider>
-              </form>
-            </div>
-          </>
-        )}
+        </div>
       </div>
       {generatePetals()}
     </section>

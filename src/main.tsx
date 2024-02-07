@@ -7,7 +7,13 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 
 OpenAPI.BASE = import.meta.env.VITE_API_BASE;
 
-const queryClient = new QueryClient();
+export const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+    },
+  },
+});
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>

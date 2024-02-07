@@ -9,6 +9,7 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe());
 
   const config = new DocumentBuilder()
+    .addApiKey({ type: 'apiKey', in: 'header', name: 'Authorization' }, 'API_KEY')
     .setTitle('Wedding Site API')
     .setDescription('Wedding Site API')
     .setVersion('1.0')

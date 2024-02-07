@@ -21,7 +21,9 @@ export class FormsService {
   }
 
   async update(id: string, updateFormDto: FormDto) {
-    return new FormDto(await this.formModel.findOneAndUpdate({ _id: id }, updateFormDto).exec());
+    return new FormDto(
+      await this.formModel.findOneAndUpdate({ _id: id }, updateFormDto, { new: true }).exec()
+    );
   }
 
   remove(id: string) {

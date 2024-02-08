@@ -2,7 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from '@n
 import { FormsService } from './forms.service';
 import { FormDto } from './dto/form.dto';
 import { AuthGuard } from '../auth/auth.guard';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiSecurity, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('forms')
 @Controller('forms')
@@ -16,6 +16,7 @@ export class FormsController {
 
   @Get()
   @UseGuards(AuthGuard)
+  @ApiSecurity('API_KEY')
   findAll() {
     return this.formsService.findAll();
   }
@@ -32,6 +33,7 @@ export class FormsController {
 
   @Delete(':id')
   @UseGuards(AuthGuard)
+  @ApiSecurity('API_KEY')
   remove(@Param('id') id: string) {
     return this.formsService.remove(id);
   }

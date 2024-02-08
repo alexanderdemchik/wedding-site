@@ -13,6 +13,8 @@ async function bootstrap() {
     .setTitle('Wedding Site API')
     .setDescription('Wedding Site API')
     .setVersion('1.0')
+    .addServer('/api', 'production')
+    .addServer('/', 'dev')
     .build();
 
   const document = SwaggerModule.createDocument(app, config);

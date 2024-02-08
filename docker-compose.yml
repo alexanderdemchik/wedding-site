@@ -7,5 +7,7 @@ services:
       dockerfile: Dockerfile.server
     restart: unless-stopped
     env_file: ./server-nest/.env
+    environment:
+      - PORT=${PORT}
     ports:
       - '${PORT}'

@@ -148,7 +148,7 @@ export const Carousel = ({ images }: Props) => {
         </animated.ul>
       </div>
       <div className={styles.dots}>
-        {images.map((el, i) => (
+        {images.map((_el, i) => (
           <div
             className={clsx(styles.dot, { [styles.active]: i === activeSlide })}
             onClick={() => slideTo(i + NUMBER_OF_FAKED_SLIDES, true)}

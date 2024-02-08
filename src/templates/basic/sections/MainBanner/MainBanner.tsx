@@ -86,7 +86,7 @@ const generatePetals = () => {
             infinite linear;
         `}
       >
-        <img src={`/public/basic/petal_${i % 2 === 0 ? 1 : 3}.png`} />
+        <img src={`/basic/petal_${i % 2 === 0 ? 1 : 3}.png`} />
       </div>
     ));
 };

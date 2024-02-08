@@ -3,7 +3,7 @@ import styles from './Photos.module.css';
 
 const images = [
   {
-    original: '/public/basic/bg_main_banner.jpg',
+    original: '/basic/bg_main_banner.jpg',
   },
   {
     original: 'https://images.pexels.com/photos/214574/pexels-photo-214574.jpeg',

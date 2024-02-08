@@ -21,7 +21,7 @@
 }
 
 .frame {
-    background-image: url('/public/basic/main_banner_circle.png');
+    background-image: url('/basic/main_banner_circle.png');
     background-size: contain;
     width: 300px;
     height: 300px;

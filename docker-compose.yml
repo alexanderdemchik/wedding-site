@@ -6,8 +6,7 @@ services:
       context: .
       dockerfile: Dockerfile.server
     restart: unless-stopped
-    env_file: ./server-nest/.env
     environment:
-      - PORT=${PORT}
+      - 'PORT=${PORT}'
     ports:
-      - '${PORT}'
+      - '${PORT}:${PORT}'

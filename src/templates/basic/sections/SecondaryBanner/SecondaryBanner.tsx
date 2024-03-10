@@ -8,7 +8,7 @@ export const SecondaryBanner = () => {
         <div className={styles.avatar}>
           <div className={styles['avatar-img-container']}>
             <img src={config.groomAvatarLink} className={styles['groom-img']} />
-            <img src={config.butterflyImageLink} className={styles['avatar-icon']} />
+            {config.butterflyImageLink && <img src={config.butterflyImageLink} className={styles['avatar-icon']} />}
           </div>
           <span>{config.groomName}</span>
         </div>
@@ -16,7 +16,7 @@ export const SecondaryBanner = () => {
         <div className={styles.avatar}>
           <div className={styles['avatar-img-container']}>
             <img src={config.brideAvatarLink} className={styles['bride-img']} />
-            <img src={config.bucketImageLink} className={styles['avatar-icon']} />
+            {config.bucketImageLink && <img src={config.bucketImageLink} className={styles['avatar-icon']} />}
           </div>
           <span>{config.brideName}</span>
         </div>

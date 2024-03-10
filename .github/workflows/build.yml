@@ -28,7 +28,7 @@ jobs:
           node-version: '16.x'
       - run: npm install
       - run: npm install -g typescript
-      - run: touch config.json
+      - run: cp src/templates/basic/configs/config-green.json config.json
       - run: npm run build
       - run: npm run lint
   deploy-ui:

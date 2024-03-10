@@ -35,7 +35,7 @@ jobs:
     needs: build-ui
     environment:
       name: production
-      url: https://pcmanager.aliaksandrdzemchyk.site/
+      url: https://alexandkhris.com/
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -45,12 +45,12 @@ jobs:
           echo "${{ secrets.SSH_PRIV_KEY }}" > ~/.ssh/id_rsa
           ssh-keyscan -H ${{ secrets.IP }} > ~/.ssh/known_hosts
       - name: run deploy script
-        run: ssh ${{ secrets.USER_IP }} "cd /home/projects/pc-manager-server && bash ./deploy-ui.sh"
+        run: ssh ${{ secrets.USER_IP }} "cd /home/projects/wedding-site && bash ./deploy-ui.sh"
   deploy-be:
     needs: build-be
     environment:
       name: production
-      url: https://pcmanager.aliaksandrdzemchyk.site/
+      url: https://alexandkhris.com/
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -60,4 +60,4 @@ jobs:
           echo "${{ secrets.SSH_PRIV_KEY }}" > ~/.ssh/id_rsa
           ssh-keyscan -H ${{ secrets.IP }} > ~/.ssh/known_hosts
       - name: run deploy script
-        run: ssh ${{ secrets.USER_IP }} "cd /home/projects/pc-manager-server && bash ./deploy-server.sh"
+        run: ssh ${{ secrets.USER_IP }} "cd /home/projects/wedding-site && bash ./deploy-server.sh"

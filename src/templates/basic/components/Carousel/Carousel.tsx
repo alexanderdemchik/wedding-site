@@ -133,7 +133,7 @@ export const Carousel = ({ images }: Props) => {
         </div>
       </div>
       <div className={styles['slide-window']} ref={slideWindowRef}>
-        <animated.ul className={styles['slide-list']} {...bind()} style={{ x }}>
+        <animated.ul className={styles['slide-list']} {...bind()} style={{ x, touchAction: 'pan-y' }}>
           {slides.map((el, i) => (
             <li className={styles.slide} style={{ width: slideWidth }}>
               <div className={styles['image-wrapper']} style={{ marginLeft: slideSpacing, marginRight: slideSpacing }}>

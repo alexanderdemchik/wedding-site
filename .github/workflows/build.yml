@@ -1,0 +1,62 @@
+name: CI/CD
+
+on:
+  push:
+    branches: ['master']
+
+jobs:
+  build-be:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16.x'
+      - name: Setup and run tests
+        working-directory: ./server-nest
+        run: | 
+          npm install
+          npm install -g typescript
+          npm run build
+          npm run lint
+  build-ui:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16.x'
+      - run: npm install
+      - run: npm install -g typescript
+      - run: npm run build
+      - run: npm run lint
+  deploy-ui:
+    needs: build-ui
+    environment:
+      name: production
+      url: https://pcmanager.aliaksandrdzemchyk.site/
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: install ssh keys
+        run: |
+          install -m 600 -D /dev/null ~/.ssh/id_rsa
+          echo "${{ secrets.SSH_PRIV_KEY }}" > ~/.ssh/id_rsa
+          ssh-keyscan -H ${{ secrets.IP }} > ~/.ssh/known_hosts
+      - name: run deploy script
+        run: ssh ${{ secrets.USER_IP }} "cd /home/projects/pc-manager-server && bash ./deploy-ui.sh"
+  deploy-be:
+    needs: build-be
+    environment:
+      name: production
+      url: https://pcmanager.aliaksandrdzemchyk.site/
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: install ssh keys
+        run: |
+          install -m 600 -D /dev/null ~/.ssh/id_rsa
+          echo "${{ secrets.SSH_PRIV_KEY }}" > ~/.ssh/id_rsa
+          ssh-keyscan -H ${{ secrets.IP }} > ~/.ssh/known_hosts
+      - name: run deploy script
+        run: ssh ${{ secrets.USER_IP }} "cd /home/projects/pc-manager-server && bash ./deploy-server.sh"

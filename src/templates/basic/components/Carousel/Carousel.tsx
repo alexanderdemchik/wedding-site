@@ -108,6 +108,7 @@ export const Carousel = ({ images }: Props) => {
 
   useEffect(() => {
     slideTo(dataRef.current.activeSlide, true, true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [slideWidth]);
 
   return (

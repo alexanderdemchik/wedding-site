@@ -36,24 +36,21 @@ type ISelectProps<TValue extends {}, Multiple extends boolean> = SelectProps<TVa
 };
 
 // @ts-ignore
-const CustomSelect: SelectType = React.forwardRef(
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  (props, ref: React.ForwardedRef<HTMLButtonElement>) => {
-    const formControl = useFormControlContext();
+const CustomSelect: SelectType = React.forwardRef((props, ref: React.ForwardedRef<HTMLButtonElement>) => {
+  const formControl = useFormControlContext();
 
-    const onBlur = (e: React.FocusEvent<HTMLButtonElement>) => {
-      formControl?.onBlur?.();
-      props?.onBlur?.(e);
-    };
+  const onBlur = (e: React.FocusEvent<HTMLButtonElement>) => {
+    formControl?.onBlur?.();
+    props?.onBlur?.(e);
+  };
 
-    const onFocus = (e: React.FocusEvent<HTMLButtonElement>) => {
-      formControl?.onFocus?.();
-      props?.onFocus?.(e);
-    };
+  const onFocus = (e: React.FocusEvent<HTMLButtonElement>) => {
+    formControl?.onFocus?.();
+    props?.onFocus?.(e);
+  };
 
-    return <BaseSelect {...props} ref={ref} onBlur={onBlur} onFocus={onFocus} />;
-  }
-);
+  return <BaseSelect {...props} ref={ref} onBlur={onBlur} onFocus={onFocus} />;
+});
 
 export const Select = React.forwardRef(
   // eslint-disable-next-line @typescript-eslint/ban-types

@@ -1,6 +1,7 @@
 import { css, keyframes } from '@emotion/react';
 import { config } from '../../config';
 import styles from './MainBanner.module.css';
+import { FaAnglesDown } from 'react-icons/fa6';
 
 export const MainBanner = () => {
   return (
@@ -23,6 +24,11 @@ export const MainBanner = () => {
         </div>
       </div>
 
+      <div className={styles['animated-arrows']}>
+        <FaAnglesDown />
+      </div>
+
+      <div className={styles['map-bg']}></div>
       {generatePetals()}
     </section>
   );

@@ -21,7 +21,7 @@
     flex-flow: column;
     justify-content: center;
     align-items: center;
-    font-size: 40px;
+    font-size: 4.5rem;
     font-weight: 600;
     line-height: 1;
 
@@ -34,13 +34,13 @@
 
 @media (--sm) {
     .time-part {
-        font-size: 60px;
+        font-size: 4rem;
     }
 }
 
 @media (--md) {
     .time-part {
-        font-size: 60px;
+        font-size: 4rem;
     }
 
     .timer {

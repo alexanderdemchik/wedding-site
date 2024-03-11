@@ -66,6 +66,30 @@
     }
 }
 
+.animated-arrows {
+    position: absolute;
+    bottom: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    font-size: 1.6rem;
+    color: white;
+    opacity: 0.9;
+    animation: 0.8s linear 0s infinite alternate updown;
+}
+
+.map-bg {
+    background: url("/basic/map-bg-body.jpg");
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    height: auto;
+    background-size: cover;
+    opacity: 0.66;
+    background-position: center;
+}
+
 @media (--md) {
     .frame {
         width: 500px;
@@ -78,5 +102,15 @@
     
     .frame-date-text {
         font-size: 40px;
+    }
+}
+
+@keyframes updown {
+    from {
+        transform: translateY(0);
+    }
+  
+    to {
+        transform: translateY(-10px);
     }
 }

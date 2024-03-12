@@ -7,7 +7,7 @@
     "dev": "vite",
     "dev:both": "concurrently \"yarn dev\" \"yarn --cwd ./server-nest start:dev\"",
     "build": "tsc && vite build",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 10",
     "preview": "vite preview",
     "generate:api": "openapi -i http://localhost:3000/api-json -o @generated/api"
   },

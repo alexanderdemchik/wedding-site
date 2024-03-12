@@ -1,7 +1,7 @@
 import { css, keyframes } from '@emotion/react';
 import { config } from '../../config';
 import styles from './MainBanner.module.css';
-import { FaAnglesDown } from 'react-icons/fa6';
+import { TfiAngleDoubleDown } from 'react-icons/tfi';
 
 export const MainBanner = () => {
   return (
@@ -25,7 +25,7 @@ export const MainBanner = () => {
       </div>
 
       <div className={styles['animated-arrows']}>
-        <FaAnglesDown />
+        <TfiAngleDoubleDown />
       </div>
 
       <div className={styles['map-bg']}></div>

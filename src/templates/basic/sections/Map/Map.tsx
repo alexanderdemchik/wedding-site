@@ -3,18 +3,16 @@ import { YMapApi } from '../../../../lib/yandexMap/yandexMapApi';
 import { YandexMapContext } from '../../../../lib/yandexMap/YandexMapProvider';
 
 import styles from './Map.module.css';
-import clsx from 'clsx';
 
 export const Map = () => {
   const { isInitialized } = useContext(YandexMapContext);
-  const [isSatelliteView, setIsSatelliteView] = useState(false);
+  const [isSatelliteView] = useState(false);
 
   if (!isInitialized) return null;
 
   const {
     YMap,
     YMapDefaultSatelliteLayer,
-    YMapReactContainer,
     YMapDefaultMarker,
     YMapControls,
     YMapDefaultFeaturesLayer,
@@ -38,12 +36,12 @@ export const Map = () => {
           <YMapOpenMapsButton />
         </YMapControls>
         <YMapControls position="right top">
-          <YMapReactContainer
+          {/* <YMapReactContainer
             tagName="div"
             className={clsx(styles['layers-toggle'], { [styles['layers-toggle-satellite']]: !isSatelliteView })}
           >
             <div onClick={() => setIsSatelliteView(!isSatelliteView)} />
-          </YMapReactContainer>
+          </YMapReactContainer> */}
         </YMapControls>
         <YMapDefaultMarker
           coordinates={[24.2670343, 52.2024247]}

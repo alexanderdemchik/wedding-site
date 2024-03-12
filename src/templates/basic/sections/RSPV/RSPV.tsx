@@ -129,7 +129,7 @@ export const Form = () => {
               })}
             >
               <FormProvider {...methods}>
-                <FormInput name="name" label="Ваше имя" placeholder="Иван Иванов" required />
+                <FormInput name="name" label="Ваше имя" placeholder="Имя Фамилия" required />
                 <PhoneInput name="phone" label="Телефон" />
                 <FormSelect name="select" defaultValue={'sssss'} label="Подтверждение присутствия">
                   <Option value={'Приду'}>Приду</Option>

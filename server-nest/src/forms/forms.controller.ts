@@ -1,4 +1,14 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  UseGuards,
+  Headers,
+} from '@nestjs/common';
 import { FormsService } from './forms.service';
 import { FormDto } from './dto/form.dto';
 import { AuthGuard } from '../auth/auth.guard';
@@ -10,8 +20,8 @@ export class FormsController {
   constructor(private readonly formsService: FormsService) {}
 
   @Post()
-  async create(@Body() createFormDto: FormDto) {
-    return new FormDto(await this.formsService.create(createFormDto));
+  async create(@Body() createFormDto: FormDto, @Headers('X-Real-IP') ipAddress: string) {
+    return new FormDto(await this.formsService.create({ ...createFormDto, ipAddress }));
   }
 
   @Get()

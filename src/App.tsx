@@ -1,11 +1,7 @@
 import Template from './templates/basic';
 
 function App() {
-  return (
-    <>
-      <Template />
-    </>
-  );
+  return <Template />;
 }
 
 export default App;

@@ -10,7 +10,7 @@ import {
 } from '@mui/base';
 import styles from './Select.module.css';
 import { useController } from 'react-hook-form';
-import { FaAngleDown } from 'react-icons/fa6';
+import { TfiAngleDown } from 'react-icons/tfi';
 import { InputLabel } from '../Input/Input';
 
 // eslint-disable-next-line @typescript-eslint/ban-types
@@ -24,7 +24,7 @@ const SelectButton = React.forwardRef(function Button<TValue extends {}, Multipl
   return (
     <button {...other} ref={ref} className={styles.button}>
       {other.children}
-      <FaAngleDown />
+      <TfiAngleDown />
     </button>
   );
 });

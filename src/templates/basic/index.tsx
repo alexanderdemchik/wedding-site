@@ -13,6 +13,10 @@ import { Fade } from 'react-awesome-reveal';
 import { PhotosLink } from './sections/PhotosLink/PhotosLink';
 import { Global, css } from '@emotion/react';
 import { config } from './config';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { lazy } from 'react';
+
+const LazyDashboard = lazy(() => import('./dashboard/Dashboard'));
 
 const BasicTemplate = () => {
   return (
@@ -25,17 +29,27 @@ const BasicTemplate = () => {
           }
         `}
       />
-      <Fade triggerOnce>
-        <MainBanner />
-        <SecondaryBanner />
-        <Timer />
-        <DaySchedule />
-        <Map />
-        <Message />
-        <Form />
-        <Photos />
-        <PhotosLink />
-      </Fade>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/dashboard" element={<LazyDashboard />} />
+          <Route
+            path="*"
+            element={
+              <Fade triggerOnce>
+                <MainBanner />
+                <SecondaryBanner />
+                <Timer />
+                <DaySchedule />
+                <Map />
+                <Message />
+                <Form />
+                <Photos />
+                <PhotosLink />
+              </Fade>
+            }
+          />
+        </Routes>
+      </BrowserRouter>
     </main>
   );
 };

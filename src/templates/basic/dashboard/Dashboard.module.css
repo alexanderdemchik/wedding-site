@@ -1,0 +1,65 @@
+.login-form-wrapper {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: url("/basic/map-bg-body.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.login-form {
+  width: 400px;
+  margin: 20px;
+  border-radius: 16px;
+  box-shadow: 0 0 8px 0 rgba(34, 60, 80, 20%);
+  background-color: var(--primary-color-light);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px;
+
+  h4 {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin: 20px 0;
+  }
+
+  .password {
+    width: 100%;
+  }
+
+  form {
+    width: 100%;
+  }
+}
+
+.button {
+  height: 50px;
+  width: 100%;
+  border-radius: 30px;
+  align-self: center;
+  border: none;
+  background: var(--primary-color);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0 20px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+  margin-top: 20px;
+}
+
+.button:hover {
+  transform: scale(1.05);
+}
+
+.button:active {
+  transform: scale(1);
+}
+
+.error {
+  color: red;
+}

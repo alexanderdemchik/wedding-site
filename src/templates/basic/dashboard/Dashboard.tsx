@@ -3,7 +3,7 @@ import styles from './Dashboard.module.css';
 import { FormProvider, useForm } from 'react-hook-form';
 import { FormInput } from '../components/Input/Input';
 import { AuthService } from '../../../../@generated/api/services/AuthService';
-import { useMutation, useQueries, useQuery } from 'react-query';
+import { useMutation, useQuery } from 'react-query';
 import { useEffect, useState } from 'react';
 import { OpenAPI } from '../../../../@generated/api/core/OpenAPI';
 import { FormsService } from '../../../../@generated/api/services/FormsService';
@@ -25,6 +25,7 @@ export const Dashboard = () => {
     },
   });
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const forms = useQuery({
     queryFn: () => {
       return FormsService.formsControllerFindAll();

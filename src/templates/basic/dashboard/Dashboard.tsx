@@ -45,7 +45,6 @@ export const Dashboard = () => {
     },
   });
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const forms = useQuery({
     queryFn: () => {
       return FormsService.formsControllerFindAll();

@@ -1,5 +1,5 @@
 import { FormDocument } from '../entities/form.entity';
-import { IsNotEmpty, IsOptional, IsString, MaxLength } from 'class-validator';
+import { IsInt, IsNotEmpty, IsOptional, IsString, MaxLength } from 'class-validator';
 
 export class FormDto {
   constructor(form?: FormDocument) {
@@ -10,6 +10,11 @@ export class FormDto {
       this.confirmation = form.confirmation;
       this.drinkPreferences = form.drinkPreferences;
       this.ipAddress = form.ipAddress;
+      this.createdAt = form.createdAt;
+      this.updatedAt = form.updatedAt;
+      this.transfer = form.transfer;
+      this.validated = form.validated;
+      this.quantity = form.quantity;
     }
   }
 
@@ -26,4 +31,14 @@ export class FormDto {
   confirmation: string;
   drinkPreferences?: string[];
   ipAddress?: string;
+  transfer: boolean;
+
+  @IsInt()
+  @IsOptional()
+  quantity?: number;
+
+  validated?: boolean;
+
+  createdAt?: Date;
+  updatedAt?: Date;
 }

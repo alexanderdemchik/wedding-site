@@ -9,5 +9,10 @@ export type FormDto = {
     confirmation: string;
     drinkPreferences?: Array<string>;
     ipAddress?: string;
+    transfer: boolean;
+    quantity?: number;
+    validated?: boolean;
+    createdAt?: string;
+    updatedAt?: string;
 };
 

@@ -21,6 +21,15 @@ export class Form {
   ipAddress: string;
 
   @Prop()
+  transfer: boolean;
+
+  @Prop()
+  validated: boolean;
+
+  @Prop()
+  quantity: number;
+
+  @Prop()
   createdAt?: Date;
 
   @Prop()

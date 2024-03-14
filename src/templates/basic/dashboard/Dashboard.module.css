@@ -1,3 +1,7 @@
+:root:root {
+  font-size: 16px;
+}
+
 .login-form-wrapper {
   width: 100vw;
   height: 100vh;
@@ -7,6 +11,10 @@
   background: url("/basic/map-bg-body.jpg");
   background-size: cover;
   background-position: center;
+}
+
+.dashboard-wrapper input[type="checkbox"] {
+  margin: 0
 }
 
 .login-form {
@@ -62,4 +70,40 @@
 
 .error {
   color: red;
+}
+
+.dashboard-wrapper {
+  padding: 20px;
+}
+
+.table-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.bg-filter {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: url("/basic/map-bg-body.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.center-aligned-table-cell :global(.ag-header-cell-label) {
+  align-items: center;
+  display: flex;
+  justify-self: center;
+  justify-content: center;
+}
+
+.table-checkbox-wrapper {
+  display: flex;
+}
+
+.table-checkbox-wrapper > span {
+  margin-left: -10px;
 }

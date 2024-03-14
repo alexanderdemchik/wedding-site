@@ -9,15 +9,20 @@ import { request as __request } from '../core/request';
 export class FormsService {
     /**
      * @param requestBody
+     * @param xRealIp
      * @returns FormDto
      * @throws ApiError
      */
     public static formsControllerCreate(
         requestBody: FormDto,
+        xRealIp?: string,
     ): CancelablePromise<FormDto> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/forms',
+            headers: {
+                'X-Real-IP': xRealIp,
+            },
             body: requestBody,
             mediaType: 'application/json',
         });

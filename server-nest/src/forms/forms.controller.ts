@@ -12,7 +12,7 @@ import {
 import { FormsService } from './forms.service';
 import { FormDto } from './dto/form.dto';
 import { AuthGuard } from '../auth/auth.guard';
-import { ApiSecurity, ApiTags } from '@nestjs/swagger';
+import { ApiHeader, ApiSecurity, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('forms')
 @Controller('forms')
@@ -20,7 +20,11 @@ export class FormsController {
   constructor(private readonly formsService: FormsService) {}
 
   @Post()
-  async create(@Body() createFormDto: FormDto, @Headers('X-Real-IP') ipAddress: string) {
+  @ApiHeader({
+    name: 'X-Real-IP', //
+    required: false,
+  })
+  async create(@Body() createFormDto: FormDto, @Headers('X-Real-IP') ipAddress?: string) {
     return new FormDto(await this.formsService.create({ ...createFormDto, ipAddress }));
   }
 

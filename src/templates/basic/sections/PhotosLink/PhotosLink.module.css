@@ -40,4 +40,17 @@
     font-style: italic;
     font-size: 1.2rem;
     flex-flow: column;
+
+}
+
+.text-content > div:nth-child(2) {
+    max-width: 100%;
+}
+
+.text-content a {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    text-wrap: nowrap;
+    display: inline-block;
+    width: 100%;
 }

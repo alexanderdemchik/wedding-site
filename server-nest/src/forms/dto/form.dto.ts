@@ -15,6 +15,8 @@ export class FormDto {
       this.transfer = form.transfer;
       this.validated = form.validated;
       this.quantity = form.quantity;
+      this.comment = form.comment;
+      this.childsQuantity = form.childsQuantity;
     }
   }
 
@@ -38,6 +40,9 @@ export class FormDto {
   quantity?: number;
 
   validated?: boolean;
+
+  comment?: string;
+  childsQuantity?: number = 0;
 
   createdAt?: Date;
   updatedAt?: Date;

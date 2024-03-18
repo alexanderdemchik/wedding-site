@@ -12,6 +12,8 @@ export type FormDto = {
     transfer: boolean;
     quantity?: number;
     validated?: boolean;
+    comment?: string;
+    childsQuantity?: number;
     createdAt?: string;
     updatedAt?: string;
 };

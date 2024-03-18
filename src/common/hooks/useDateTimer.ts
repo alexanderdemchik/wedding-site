@@ -8,6 +8,15 @@ interface IUseDateTimerResult {
 }
 
 const getDateDiff = (date1: Date, date2: Date) => {
+  if (date1 > date2) {
+    return {
+      days: 0,
+      hours: 0,
+      minutes: 0,
+      seconds: 0,
+    };
+  }
+
   let seconds = Math.floor((date2.getTime() - date1.getTime()) / 1000);
   let minutes = Math.floor(seconds / 60);
   let hours = Math.floor(minutes / 60);

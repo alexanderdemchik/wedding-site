@@ -69,6 +69,7 @@ export const Select = React.forwardRef(
     const slotsProps = {
       popper: {
         className: styles.popper,
+        disablePortal: true,
         style: {
           minWidth: `${menuMinWidth}px`,
         },

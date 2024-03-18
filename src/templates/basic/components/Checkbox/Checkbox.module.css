@@ -1,6 +1,7 @@
 .checkbox input {
   position: absolute;
   opacity: 0;
+  cursor: pointer;
 }
 
 .checkbox label {
@@ -11,4 +12,7 @@
 
 .checkbox svg {
   margin-right: 6px;
+  cursor: pointer;
 }
+
+.checkbox {position: relative;}

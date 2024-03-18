@@ -27,7 +27,13 @@ export class Form {
   validated: boolean;
 
   @Prop()
-  quantity: number;
+  quantity?: number;
+
+  @Prop()
+  childsQuantity?: number;
+
+  @Prop()
+  comment?: string;
 
   @Prop()
   createdAt?: Date;

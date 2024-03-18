@@ -1,6 +1,13 @@
 :root:root {
   font-size: 16px;
+  
+  --main-font-family: roboto, sans-serif;
 }
+
+:root .ag-theme-quartz {
+  --ag-font-family: roboto, sans-serif;
+}
+
 
 .login-form-wrapper {
   width: 100vw;
@@ -106,4 +113,35 @@
 
 .table-checkbox-wrapper > span {
   margin-left: -10px;
+}
+
+.fab.fab {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}
+
+.today-confirmations {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 1;
+  font-size: 1.1rem;
+  background: #fff;
+}
+
+.today-confirmations-body {
+  min-height: 180px;
+  flex-grow: 1;
+  align-items: center;
+  display: flex;
+  border-radius: 50%;
+  border: 20px solid var(--primary-color);
+  margin: 20px;
+  aspect-ratio: 1 / 1;
+  color: var(--primary-color);
+  font-size: 2rem;
+  font-weight: 800;
+  justify-content: center;
 }

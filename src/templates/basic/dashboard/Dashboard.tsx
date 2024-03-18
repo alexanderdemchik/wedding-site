@@ -22,10 +22,13 @@ import {
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-quartz.css';
 import { AgChartsReact } from 'ag-charts-react';
-import { AgChartOptions } from 'ag-charts-community';
+import { AgCartesianChartOptions, AgChartOptions } from 'ag-charts-community';
 import { queryClient } from '../../../main';
 import { FormDto } from '../../../../@generated/api/models/FormDto';
-import { Button, Checkbox } from '@mui/material';
+import { Checkbox, Fab, Grid, IconButton, Stack, Typography } from '@mui/material';
+import { FaPencil, FaPlus, FaRegTrashCan } from 'react-icons/fa6';
+import { AddEditConfirmationRecord } from './AddEditConfirmationRecord';
+import dayjs from 'dayjs';
 
 export const Dashboard = () => {
   const [token, setToken] = useLocalStorage('token', '');
@@ -100,17 +103,22 @@ export const Dashboard = () => {
       sortable: false,
       width: 40,
       maxWidth: 40,
+      suppressColumnsToolPanel: true,
+      suppressFiltersToolPanel: true,
+      suppressHeaderFilterButton: true,
+      suppressHeaderMenuButton: true,
     },
-    { field: 'name', filter: true, minWidth: 200 },
-    { field: 'phone', filter: true },
-    { field: 'confirmation', filter: true },
-    { field: 'quantity', filter: 'agNumberColumnFilter' },
-    { field: 'drinkPreferences', filter: true },
-
+    { field: 'name', filter: true, minWidth: 200, headerName: 'Имя' },
+    { field: 'phone', filter: true, headerName: 'Телефон', tooltipField: 'phone' },
+    { field: 'confirmation', filter: true, headerName: 'Подтверждение' },
+    { field: 'quantity', filter: 'agNumberColumnFilter', headerName: 'Кол-во' },
+    { field: 'childsQuantity', filter: 'agNumberColumnFilter', headerName: 'Дети' },
+    { field: 'drinkPreferences', filter: true, headerName: 'Напитки', tooltipField: 'drinkPreferences' },
     {
       field: 'transfer',
       filter: true,
       type: 'boolean',
+      headerName: 'Трансфер',
       cellRenderer: ({ node }) => {
         return (
           <div className={styles['table-checkbox-wrapper']}>
@@ -121,6 +129,8 @@ export const Dashboard = () => {
     },
     {
       field: 'validated',
+      filter: true,
+      headerName: 'Проверено',
       type: 'boolean',
       cellRenderer: ({ node }) => {
         return (
@@ -131,7 +141,18 @@ export const Dashboard = () => {
       },
     },
     {
+      field: 'comment',
+      headerName: 'Комментарий',
+      tooltipField: 'comment',
+    },
+    {
+      field: 'createdAt',
+      headerName: 'Дата',
+      type: 'dateString',
+    },
+    {
       field: 'ipAddress',
+      headerName: 'ip',
       filter: true,
     },
     {
@@ -139,20 +160,30 @@ export const Dashboard = () => {
       cellRenderer: ({ node }) => {
         return (
           <div className={styles['table-actions']}>
-            <Button variant="text">Edit</Button>
-            <Button
-              variant="text"
+            <IconButton
+              size="small"
+              onClick={() => {
+                setIsAddEditModalOpen(true);
+                setEditRecord(node.data);
+              }}
+            >
+              <FaPencil />
+            </IconButton>
+            <IconButton
+              size="small"
               onClick={() => {
                 if (window.confirm('Вы уверены что хотите удалить запись?')) {
                   deleteFormMutation.mutate(node.data.id);
                 }
               }}
             >
-              Delete
-            </Button>
+              <FaRegTrashCan />
+            </IconButton>
           </div>
         );
       },
+      minWidth: 80,
+      maxWidth: 80,
     },
   ]);
 
@@ -175,9 +206,11 @@ export const Dashboard = () => {
   const drinkPreferencesChartData = useMemo<AgChartOptions>(() => {
     const numberByDrink = (forms.data || []).reduce(
       (acc, curr) => {
-        (curr.drinkPreferences || []).forEach((drink) => {
-          acc[drink] = (acc[drink] || 0) + 1;
-        });
+        if (curr.confirmation !== 'К сожалению не смогу') {
+          (curr.drinkPreferences || []).forEach((drink) => {
+            acc[drink] = (acc[drink] || 0) + 1;
+          });
+        }
 
         return acc;
       },
@@ -185,9 +218,10 @@ export const Dashboard = () => {
     );
 
     return {
+      theme: 'ag-material',
       data: Object.keys(numberByDrink).map((drink) => ({ asset: drink, amount: numberByDrink[drink] })),
       title: {
-        text: 'Drink Preferences',
+        text: 'Напитки',
       },
       series: [
         {
@@ -209,12 +243,94 @@ export const Dashboard = () => {
     };
   }, [forms.data]);
 
+  const confirmationsPerDayChartData = useMemo<AgCartesianChartOptions>(() => {
+    const getData = () => {
+      const confirmationsNumByDay = (forms.data || []).reduce(
+        (acc, curr) => {
+          const formattedDate = dayjs(curr.createdAt).format('DD-MM');
+
+          acc[formattedDate] = (acc[formattedDate] || 0) + 1;
+
+          return acc;
+        },
+        {} as Record<string, number>
+      );
+
+      return Object.entries(confirmationsNumByDay).map(([date, value]) => ({
+        date,
+        value,
+      }));
+    };
+
+    return {
+      theme: 'ag-material',
+      title: {
+        text: 'Подтверждения',
+      },
+      data: getData(),
+      series: [
+        {
+          type: 'area',
+          xKey: 'date',
+          yKey: 'value',
+          yName: 'Кол-во подтверждений',
+          stroke: 'blue',
+          strokeWidth: 3,
+          fill: 'lightBlue',
+          marker: {
+            enabled: true,
+            fill: 'blue',
+          },
+        },
+      ],
+      axes: [
+        {
+          type: 'number',
+          position: 'left',
+        },
+        {
+          type: 'category',
+          position: 'bottom',
+        },
+      ],
+    };
+  }, [forms.data]);
+
   useEffect(() => {
     window.addEventListener('resize', () => gridRef.current?.api.sizeColumnsToFit());
     // cleanup
     return () => {
       window.removeEventListener('resize', () => gridRef.current?.api.sizeColumnsToFit());
     };
+  }, []);
+
+  const [isAddEditModalOpen, setIsAddEditModalOpen] = useState(false);
+  const [editRecord, setEditRecord] = useState<FormDto | undefined>(undefined);
+
+  const peopleCount = useMemo(() => {
+    return (forms.data || []).reduce(
+      (acc, curr) => {
+        if (curr.confirmation === 'К сожалению не смогу') {
+          acc.notPresented += 1;
+        } else {
+          acc.adults += (curr.quantity || 1) - (curr.childsQuantity || 0);
+          acc.childs += curr.childsQuantity || 0;
+
+          if (curr.transfer) {
+            acc.needTransfer += curr.quantity || 1;
+          }
+        }
+
+        return acc;
+      },
+      { adults: 0, childs: 0, notPresented: 0, needTransfer: 0 }
+    );
+  }, [forms.data]);
+
+  const memoizedData = useMemo(() => [...(forms.data || [])].reverse(), [forms.data]);
+
+  const todayConfirmationsNumber = useMemo(() => {
+    return (forms.data || []).filter((el) => dayjs(el.createdAt).isSame(dayjs(), 'day')).reduce((acc) => acc + 1, 0);
   }, []);
 
   if (!authenticated) {
@@ -249,20 +365,61 @@ export const Dashboard = () => {
   return (
     <div className={styles['dashboard-wrapper']}>
       <div className={styles['bg-filter']} />
+      <AddEditConfirmationRecord
+        open={isAddEditModalOpen}
+        onClose={() => setIsAddEditModalOpen(false)}
+        edit={editRecord}
+      />
       <div
         className="ag-theme-quartz" // applying the grid theme
-        style={{ height: '50vh' }} // the grid will fill the size of the parent container
+        style={{ height: '50vh', position: 'relative' }} // the grid will fill the size of the parent container
       >
         <AgGridReact
           ref={gridRef}
-          rowData={forms.data || []}
+          rowData={memoizedData}
           columnDefs={colDefs}
           autoSizeStrategy={autoSizeStrategy}
           defaultColDef={defaultColDef}
+          enableBrowserTooltips
         />
+        <Fab
+          className={styles.fab}
+          color="primary"
+          size="small"
+          onClick={() => {
+            setEditRecord(undefined);
+            setIsAddEditModalOpen(true);
+          }}
+        >
+          <FaPlus />
+        </Fab>
       </div>
 
-      <AgChartsReact options={drinkPreferencesChartData} />
+      <Grid container spacing={2}>
+        <Grid item xs={12}>
+          <Typography>
+            <Stack direction="row" spacing={1}>
+              <div>Всего: {peopleCount.adults + peopleCount.childs}</div>
+              <div>Взрослые: {peopleCount.adults}</div>
+              <div>Дети: {peopleCount.childs}</div>
+              <div>Не придут: {peopleCount.notPresented}</div>
+              <div>Нужен трансфер: {peopleCount.needTransfer}</div>
+            </Stack>
+          </Typography>
+        </Grid>
+        <Grid item xs={12} md={6} lg={4}>
+          <AgChartsReact options={drinkPreferencesChartData} />
+        </Grid>
+        <Grid item xs={12} md={6} lg={4}>
+          <AgChartsReact options={confirmationsPerDayChartData} />
+        </Grid>
+        <Grid item xs={12} md={6} lg={4} display={'flex'}>
+          <div className={styles['today-confirmations']}>
+            <div className={styles['today-confirmations-title']}>За сегодня</div>
+            <div className={styles['today-confirmations-body']}>+ {todayConfirmationsNumber}</div>
+          </div>
+        </Grid>
+      </Grid>
     </div>
   );
 };

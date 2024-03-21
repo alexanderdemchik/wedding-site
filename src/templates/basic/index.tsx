@@ -8,7 +8,7 @@ import { Map } from './sections/Map/Map';
 import { DaySchedule } from './sections/DaySchedule/DaySchedule';
 import { Message } from './sections/Message/Message';
 import { Form } from './sections/RSPV/RSPV';
-import { Photos } from './sections/Photos/Photos';
+// import { Photos } from './sections/Photos/Photos';
 import { Fade } from 'react-awesome-reveal';
 import { PhotosLink } from './sections/PhotosLink/PhotosLink';
 import { Global, css } from '@emotion/react';
@@ -43,7 +43,7 @@ const BasicTemplate = () => {
                 <Map />
                 <Message />
                 <Form />
-                <Photos />
+                {/* <Photos /> */}
                 <PhotosLink />
               </Fade>
             }

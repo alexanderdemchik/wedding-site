@@ -33,27 +33,30 @@ export const AddEditConfirmationRecord = (props: IAddEditConfirmationRecordProps
   });
 
   useEffect(() => {
-    methods.reset(
-      {
-        name: '',
-        phone: '',
-        confirmation: 'Приду',
-        drinkPreferences: [] as string[],
-        transfer: false,
-        quantity: 1,
-        childsQuantity: 0,
-        comment: '',
-        validated: false,
-      },
-      { keepValues: false }
-    );
+    if (!props.open) {
+      methods.reset(
+        {
+          name: '',
+          phone: '',
+          confirmation: 'Приду',
+          drinkPreferences: [] as string[],
+          transfer: false,
+          quantity: 1,
+          childsQuantity: 0,
+          comment: '',
+          validated: false,
+        },
+        { keepValues: false }
+      );
+    }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.open]);
 
   useEffect(() => {
-    props.edit && methods.reset({ ...props.edit });
+    props.open && props.edit && methods.reset({ ...props.edit });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [props.edit]);
+  }, [props.edit, props.open]);
 
   const saveMutation = useMutation({
     mutationFn: ({ data, id }: { data: FormDto; id: string }) => {

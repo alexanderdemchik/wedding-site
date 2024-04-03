@@ -1,0 +1,55 @@
+{
+  "template": "",
+  "mainBannerBgLink": "/basic/bg_main_banner.jpg",
+  "targetDate": "2024-06-15T13:00:00",
+  "place": "Агроусадьба \"Три богатыря\"",
+  "groomName": "Александр",
+  "groomAvatarLink": "/basic/groom.png",
+  "brideName": "Христина",
+  "brideAvatarLink": "/basic/bride.png",
+  "butterflyImageLink": "",
+  "bucketImageLink": "",
+  "dividerImageLink": "/basic/divider_variant2.svg",
+  "daySchedule": [
+    {
+      "title": "Сбор гостей",
+      "time": "14:00 - 14:30",
+      "place": "Агроусадьба \"Три богатыря\"",
+      "address": "д. Пески 1, Набережная ул., 1",
+      "icon": "/basic/rings_green.png"
+    },
+    {
+      "title": "Церемония бракосочетания",
+      "time": "14:30 - 15:00",
+      "place": "Агроусадьба \"Три богатыря\"",
+      "address": "д. Пески 1, Набережная ул., 1",
+      "icon": "/basic/rings_green.png"
+    },
+    {
+      "title": "Банкет",
+      "time": "15:00 - 23:00",
+      "place": "Агроусадьба \"Три богатыря\"",
+      "address": "д. Пески 1, Набережная ул., 1",
+      "icon": "/basic/fluttes_green.png"
+    }
+  ],
+  "message": [
+    "Дорогие друзья!",
+    "Приглашаем Вас на наш праздник",
+    "- нашу свадьбу!",
+    "Мы будем счастливы видеть каждого из Вас!"
+  ],
+  "formBackgroundImageLink": "/basic/form-background.jpg",
+  "rspv": {},
+  "theme": {
+    "primaryColor": "#306944",
+    "primaryColorLight": "#F2EFEB"
+  },
+  "contacts": [
+    {
+      "name": "Александр",
+      "phone": "+375333300672",
+      "tg": "@alexanderdz"
+    }
+  ]
+}

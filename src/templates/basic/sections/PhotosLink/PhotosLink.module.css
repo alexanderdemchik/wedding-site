@@ -3,10 +3,11 @@
     max-height: 90vh;
     position: relative;
     overflow: hidden;
+    background-color: var(--primary-color);
 }
 
 .filter {
-    background-color: rgba(0,0,0, 10%);
+    background-color: #0d06065c;
     position: absolute;
     inset: 0;
 }
@@ -36,7 +37,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #fff;
+    color: var(--primary-color-light);
     font-style: italic;
     font-size: 1.2rem;
     flex-flow: column;
@@ -52,5 +53,6 @@
     overflow: hidden;
     text-wrap: nowrap;
     display: inline-block;
+    color: var(--primary-color-light);
     width: 100%;
 }

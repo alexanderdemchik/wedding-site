@@ -1,7 +1,7 @@
 import { useQuery } from 'react-query';
-import { config } from '../../config';
+// import { config } from '../../config';
 import styles from './PhotosLink.module.css';
-import { css } from '@emotion/react';
+// import { css } from '@emotion/react';
 import { DefaultService } from '../../../../../@generated/api/services/DefaultService';
 
 export function PhotosLink() {
@@ -12,9 +12,9 @@ export function PhotosLink() {
       <div className={styles['bg-wrapper']}>
         <div
           className={styles.bg}
-          css={css`
-            background-image: url(${config.mainBannerBgLink});
-          `}
+          // css={css`
+          //   background-image: url(${config.mainBannerBgLink});
+          // `}
         />
       </div>
 

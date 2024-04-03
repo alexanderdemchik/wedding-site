@@ -15,6 +15,7 @@ import { Global, css } from '@emotion/react';
 import { config } from './config';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { lazy } from 'react';
+import { DressCode } from './sections/DressCode/DressCode';
 
 const LazyDashboard = lazy(() => import('./dashboard/Dashboard'));
 
@@ -42,6 +43,7 @@ const BasicTemplate = () => {
                 <DaySchedule />
                 <Map />
                 <Message />
+                <DressCode />
                 <Form />
                 {/* <Photos /> */}
                 <PhotosLink />

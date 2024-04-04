@@ -166,6 +166,9 @@ export const Form = () => {
                 <button type="submit" className={styles.button} disabled={formSubmitMutation.isLoading}>
                   Подтвердить
                 </button>
+                {formSubmitMutation.isError && (
+                  <div style={{ color: 'red' }}>Произошла ошибка, попробуйте еще раз позже</div>
+                )}
               </FormProvider>
             </form>
           </div>

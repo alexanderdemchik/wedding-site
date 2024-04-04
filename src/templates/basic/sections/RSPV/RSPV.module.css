@@ -111,6 +111,10 @@
     font-family: inherit;
 }
 
+.button:disabled {
+    background-color: var(--grey-400);
+}
+
 .button:hover {
     transform: scale(1.05);
 }

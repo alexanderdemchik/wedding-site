@@ -14,33 +14,54 @@
 
 .items-container {
     display: flex;
-    flex-flow: column nowrap;
-    align-items: center;
-    justify-content: center;
-    padding-top: 50px;
-    gap: 30px;
-}
-
-.item {
-    display: flex;
     flex-flow: column;
-    text-align: center;
-    align-items: center;
+    position: relative;
+    margin-top: 20px;
 }
 
-.item img {
-    height: 100px;
-    width: 100px;
-    margin-bottom: 20px;
+.time {
+    font-size: 1rem;
+    flex: 1;
+    text-align: end;
+    padding: 20px;
+    flex-shrink: 0;
+    min-width: calc(50% - 40px);
+    height: fit-content;
+    position: relative;
 }
 
-.item address {
-    margin-top: 10px;
-}
 
 .title {
-    font-size: 1.4rem;
-    font-weight: 700;
+    font-size: 1rem;
+    padding: 20px;
+    flex: 1;
+    text-align: start;
+    margin: 0;
+    flex-shrink: 0;
+    min-width: calc(50% - 40px);
+}
+
+.title::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    height: 100%;
+    width: 3px;
+    background-color: var(--primary-color-light);
+    word-wrap: break-word;
+}
+
+.time::after {
+    content: '';
+    position: absolute;
+    width: 9px;
+    right: -6px;
+    border-radius: 100%;
+    height: 9px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: var(--primary-color-light);
 }
 
 .place {
@@ -55,18 +76,32 @@
     background-color: var(--divider-color);
 }
 
-.time {
+.target-date {
+    font-size: 1.5rem;
+    margin: 0;
+    font-weight: 600;
     color: var(--text-secondary-color);
 }
 
-@media (--md) {
-    .items-container {
-        gap: 100px;
-        flex-flow: row nowrap;
+.time-separator {
+    display: block;
+    width: 2px;
+    background-color: var(--primary-color-light);
+    flex: 0;
+}
+
+.item {
+    display: flex;
+    flex-flow: row;
+    position: relative;
+}
+
+@media (--sm) {
+    .time {
+        font-size: 1.2rem;
     }
 
-    .divider {
-        height: 300px;
-        width: 2px;
+    .title {
+        font-size: 1.2rem;
     }
 }

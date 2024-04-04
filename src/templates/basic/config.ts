@@ -18,6 +18,7 @@ interface IBasicTemplateConfig {
     primaryColor: string;
     primaryColorLight: string;
   };
+  information: { title: string; content: string; dressCodeColors: string[] }[];
 }
 
 export const config: IBasicTemplateConfig = {

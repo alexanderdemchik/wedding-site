@@ -34,7 +34,7 @@ export const MainBanner = () => {
   );
 };
 
-const formatDate = (date: Date) => {
+export const formatDate = (date: Date) => {
   const normalizeNumber = (num: number) => {
     if (num < 10) {
       return `0${num}`;

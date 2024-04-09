@@ -10,7 +10,7 @@ import { useMutation, useQuery } from 'react-query';
 import { FormsService } from '../../../../../@generated/api/services/FormsService';
 import { FormDto } from '../../../../../@generated/api/models/FormDto';
 import { useLocalStorage } from 'usehooks-ts';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import clsx from 'clsx';
 import { FaRegCircleCheck, FaRegFaceFrownOpen } from 'react-icons/fa6';
 import { Icon } from '../../components/Icon';
@@ -55,18 +55,11 @@ export const Form = () => {
       select: submittedFormQuery.data?.confirmation || 'Приду',
       drinks: submittedFormQuery.data?.drinkPreferences || ([] as string[]),
       transfer: false,
-      quantity: 2,
+      quantity: 1,
     },
   });
 
-  const isMultipleGuests = methods.watch('select') === 'Приду не один(не одна)';
-
-  useEffect(() => {
-    if ((!methods.getValues('quantity') || methods.getValues('quantity') < 2) && isMultipleGuests) {
-      methods.setValue('quantity', 2);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isMultipleGuests]);
+  const isComing = methods.watch('select') === 'Приду';
 
   return (
     <section className={styles.container}>
@@ -128,7 +121,7 @@ export const Form = () => {
                       confirmation: data.select,
                       phone: data.phone,
                       transfer: data.transfer,
-                      quantity: data.select === 'Приду' ? 1 : data.quantity,
+                      quantity: data.quantity,
                     },
                     isUpdate: true,
                   });
@@ -140,7 +133,7 @@ export const Form = () => {
                       confirmation: data.select,
                       phone: data.phone,
                       transfer: data.transfer,
-                      quantity: data.select === 'Приду' ? 1 : data.quantity,
+                      quantity: data.quantity,
                     },
                   });
                 }
@@ -148,19 +141,24 @@ export const Form = () => {
             >
               <FormProvider {...methods}>
                 <FormInput name="name" label="Ваше имя" placeholder="Имя Фамилия" required />
-                <PhoneInput name="phone" label="Телефон" />
                 <FormSelect name="select" label="Подтверждение присутствия">
                   <Option value={'Приду'}>Приду</Option>
-                  <Option value={'Приду не один(не одна)'}>Приду не один(не одна)</Option>
                   <Option value={'К сожалению не смогу'}>К сожалению не смогу</Option>
                 </FormSelect>
-                {isMultipleGuests && (
+                {isComing && (
                   <FormSelect name="quantity" label="Количество гостей">
-                    {[2, 3, 4, 5, 6, 7, 8, 9].map((el) => (
+                    {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((el) => (
                       <Option value={el}>{el}</Option>
                     ))}
                   </FormSelect>
                 )}
+                <PhoneInput name="phone" label="Телефон (необязательно)" />
+                <FormInput
+                  name="email"
+                  label="Email (необязательно, отправим ссылку на фото)"
+                  placeholder="aaaa@gmail.com"
+                />
+
                 <FormDrinkSelector label="Что предпочитаете пить?" name="drinks" />
                 <FormCheckbox name="transfer" label="Нужен трансфер" />
                 <button type="submit" className={styles.button} disabled={formSubmitMutation.isLoading}>

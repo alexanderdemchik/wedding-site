@@ -5,7 +5,12 @@
 }
 
 .wrapper label {
+    max-width: 100%;
     position: absolute;
+    text-align: start;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     font-size: var(--input-label-font-size);
     top: -16px;
     font-family: var(--main-font-family);

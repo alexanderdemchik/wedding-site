@@ -89,7 +89,6 @@ export const AddEditConfirmationRecord = (props: IAddEditConfirmationRecordProps
             <PhoneInput name="phone" label="Телефон" />
             <FormSelect name="confirmation" label="Подтверждение присутствия">
               <Option value={'Приду'}>Приду</Option>
-              <Option value={'Приду не один(не одна)'}>Приду не один(не одна)</Option>
               <Option value={'К сожалению не смогу'}>К сожалению не смогу</Option>
             </FormSelect>
             <FormSelect name="quantity" label="Количество гостей">

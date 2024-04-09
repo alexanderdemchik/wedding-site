@@ -29,6 +29,7 @@ import { Checkbox, Fab, Grid, IconButton, Stack, Typography } from '@mui/materia
 import { FaPencil, FaPlus, FaRegTrashCan } from 'react-icons/fa6';
 import { AddEditConfirmationRecord } from './AddEditConfirmationRecord';
 import dayjs from 'dayjs';
+import { AgGridEvent } from 'ag-grid-community';
 
 export const Dashboard = () => {
   const [token, setToken] = useLocalStorage('token', '');
@@ -96,9 +97,7 @@ export const Dashboard = () => {
   // Column Definitions: Defines the columns to be displayed.
   const [colDefs] = useState<ColDef[]>([
     {
-      cellRenderer: ({ rowIndex }) => {
-        return rowIndex + 1;
-      },
+      valueGetter: 'node.rowIndex + 1',
       headerName: '#',
       sortable: false,
       width: 40,
@@ -109,7 +108,8 @@ export const Dashboard = () => {
       suppressHeaderMenuButton: true,
     },
     { field: 'name', filter: true, minWidth: 200, headerName: 'Имя' },
-    { field: 'phone', filter: true, headerName: 'Телефон', tooltipField: 'phone' },
+    { field: 'phone', filter: true, headerName: 'Телефон', tooltipField: 'phone', cellClass: 'stringType' },
+    { field: 'email', filter: true, headerName: 'Email', tooltipField: 'email' },
     { field: 'confirmation', filter: true, headerName: 'Подтверждение' },
     { field: 'quantity', filter: 'agNumberColumnFilter', headerName: 'Кол-во' },
     { field: 'childsQuantity', filter: 'agNumberColumnFilter', headerName: 'Дети' },
@@ -377,10 +377,14 @@ export const Dashboard = () => {
         <AgGridReact
           ref={gridRef}
           rowData={memoizedData}
+          excelStyles={[{ id: 'phone', dataType: 'String' }]}
           columnDefs={colDefs}
           autoSizeStrategy={autoSizeStrategy}
           defaultColDef={defaultColDef}
           enableBrowserTooltips
+          onSortChanged={(e: AgGridEvent) => {
+            e.api.refreshCells();
+          }}
         />
         <Fab
           className={styles.fab}

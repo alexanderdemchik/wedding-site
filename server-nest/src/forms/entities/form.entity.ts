@@ -15,6 +15,9 @@ export class Form {
   confirmation: string;
 
   @Prop()
+  email: string;
+
+  @Prop()
   drinkPreferences: string[];
 
   @Prop()

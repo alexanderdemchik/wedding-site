@@ -4,6 +4,7 @@
 /* eslint-disable */
 export type FormDto = {
     id?: string;
+    email: string;
     name: string;
     phone?: string;
     confirmation: string;

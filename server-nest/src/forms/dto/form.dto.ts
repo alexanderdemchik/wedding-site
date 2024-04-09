@@ -17,10 +17,12 @@ export class FormDto {
       this.quantity = form.quantity;
       this.comment = form.comment;
       this.childsQuantity = form.childsQuantity;
+      this.email = form.email;
     }
   }
 
   id?: string;
+  email: string;
 
   @IsNotEmpty()
   name: string;

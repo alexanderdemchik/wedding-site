@@ -54,6 +54,7 @@ export const Form = () => {
       phone: submittedFormQuery.data?.phone || '',
       select: submittedFormQuery.data?.confirmation || 'Приду',
       drinks: submittedFormQuery.data?.drinkPreferences || ([] as string[]),
+      email: submittedFormQuery.data?.email || '',
       transfer: false,
       quantity: 1,
     },
@@ -122,6 +123,7 @@ export const Form = () => {
                       phone: data.phone,
                       transfer: data.transfer,
                       quantity: data.quantity,
+                      email: data.email,
                     },
                     isUpdate: true,
                   });
@@ -134,13 +136,14 @@ export const Form = () => {
                       phone: data.phone,
                       transfer: data.transfer,
                       quantity: data.quantity,
+                      email: data.email,
                     },
                   });
                 }
               })}
             >
               <FormProvider {...methods}>
-                <FormInput name="name" label="Ваше имя" placeholder="Имя Фамилия" required />
+                <FormInput name="name" label="Ваше имя" placeholder="Имя Фамилия" required type="name" />
                 <FormSelect name="select" label="Подтверждение присутствия">
                   <Option value={'Приду'}>Приду</Option>
                   <Option value={'К сожалению не смогу'}>К сожалению не смогу</Option>
@@ -155,6 +158,7 @@ export const Form = () => {
                 <PhoneInput name="phone" label="Телефон (необязательно)" />
                 <FormInput
                   name="email"
+                  type="email"
                   label="Email (необязательно, отправим ссылку на фото)"
                   placeholder="aaaa@gmail.com"
                 />

@@ -28,6 +28,7 @@ export const AddEditConfirmationRecord = (props: IAddEditConfirmationRecordProps
       quantity: 1,
       childsQuantity: 0,
       comment: '',
+      email: '',
       validated: false,
     },
   });
@@ -44,6 +45,7 @@ export const AddEditConfirmationRecord = (props: IAddEditConfirmationRecordProps
           quantity: 1,
           childsQuantity: 0,
           comment: '',
+          email: '',
           validated: false,
         },
         { keepValues: false }
@@ -101,6 +103,12 @@ export const AddEditConfirmationRecord = (props: IAddEditConfirmationRecordProps
                 <Option value={el}>{el}</Option>
               ))}
             </FormSelect>
+            <FormInput
+              name="email"
+              type="email"
+              label="Email (необязательно, отправим ссылку на фото)"
+              placeholder="aaaa@gmail.com"
+            />
             <FormDrinkSelector label="Что предпочитаете пить?" name="drinkPreferences" />
             <TextField multiline fullWidth placeholder="Комментарий" {...methods.register('comment')} />
             <FormCheckbox name="transfer" label="Нужен трансфер" />

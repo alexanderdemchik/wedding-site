@@ -82,9 +82,11 @@
 .map-bg {
     background: url("/basic/map-bg-body.jpg");
     position: fixed;
-    inset: 0;
+    top: 0; 
+    left: 0;
+    width: 100vw;
+    height: 100vh;
     z-index: -1;
-    height: auto;
     background-size: cover;
     opacity: 0.66;
     background-position: center;

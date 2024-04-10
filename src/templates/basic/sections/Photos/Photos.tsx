@@ -3,14 +3,22 @@ import styles from './Photos.module.css';
 
 const images = [
   {
-    original: '/basic/bg_main_banner.jpg',
+    original: '/basic/photos/1.jpg',
   },
   {
-    original: 'https://images.pexels.com/photos/214574/pexels-photo-214574.jpeg',
+    original: '/basic/photos/2.jpg',
   },
   {
-    original:
-      'https://buffer.com/cdn-cgi/image/w=1000,fit=contain,q=90,f=auto/library/content/images/size/w600/2023/10/free-images.jpg',
+    original: '/basic/photos/3.jpg',
+  },
+  {
+    original: '/basic/photos/6.jpg',
+  },
+  {
+    original: '/basic/photos/7.jpg',
+  },
+  {
+    original: '/basic/photos/8.jpg',
   },
 ];
 

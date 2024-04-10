@@ -14,7 +14,7 @@
 .slide-list {
     position: relative;
     max-height: 400px;
-    width: 10000px;
+    width: 100000px;
     display: flex;
     flex-direction: row;
     touch-action: none;

@@ -155,7 +155,7 @@ export const Form = () => {
                     ))}
                   </FormSelect>
                 )}
-                <PhoneInput name="phone" label="Телефон (необязательно)" />
+                <PhoneInput name="phone" label="Телефон" />
                 <FormInput
                   name="email"
                   type="email"

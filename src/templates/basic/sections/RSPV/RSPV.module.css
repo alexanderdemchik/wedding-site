@@ -20,7 +20,10 @@
     background-size: cover;
     background-attachment: fixed;
     transform: translateZ(0);
-    inset: 0;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
 }
 
 .petal {

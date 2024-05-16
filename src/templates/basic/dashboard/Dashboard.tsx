@@ -331,7 +331,7 @@ export const Dashboard = () => {
 
   const todayConfirmationsNumber = useMemo(() => {
     return (forms.data || []).filter((el) => dayjs(el.createdAt).isSame(dayjs(), 'day')).reduce((acc) => acc + 1, 0);
-  }, []);
+  }, [forms.data]);
 
   if (!authenticated) {
     return (
